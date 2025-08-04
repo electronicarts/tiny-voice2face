@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
+  <!-- Replace the content tag with appropriate information -->
+  <meta name="description" content="SIGGRAPH 2025 - TINY IS NOT SMALL ENOUGH: High quality, low-resource facial animation models through hybrid knowledge distillation">
+  <meta property="og:title" content="SIGGRAPH 2025 - TINY IS NOT SMALL ENOUGH: High quality, low-resource facial animation models through hybrid knowledge distillation"/>
+  <meta property="og:description" content="SIGGRAPH 2025 - TINY IS NOT SMALL ENOUGH: High quality, low-resource facial animation models through hybrid knowledge distillation"/>
+  <meta property="og:url" content="https://electronicarts.github.io/tiny-voice2face/"/>
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
+  <meta property="og:image" content="static/image/your_banner_image.png" />
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+
+
+  <meta name="twitter:title" content="TWITTER BANNER TITLE META TAG">
+  <meta name="twitter:description" content="TWITTER BANNER DESCRIPTION META TAG">
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
+  <meta name="twitter:image" content="static/images/your_twitter_banner_image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- Keywords for your paper to be indexed by-->
+  <meta name="keywords" content="KEYWORDS SHOULD BE PLACED HERE">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <title>Tiny is not small enough </title>
+  <link rel="icon" type="image/x-icon" href="static/images/seed-1.ico">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+  rel="stylesheet">
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <style>
+    video {
+          margin-bottom: 20px; /* Increase this value to add more space */
+          }
+    .video-cover {
+      position: relative;
+      width: 100%;
+      height: 60vh; /* Adjust height as needed */
+      overflow: hidden;
+    }
+
+    .video-cover video {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      min-width: 100%;
+      min-height: 100%;
+      transform: translate(-50%, -50%);
+      object-fit: cover;
+    }
+
+    .content-on-top {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      text-align: center;
+      z-index: 1;
+    }
+    .content-on-top a {
+    color: #FFFFFF !important;      /* bright gold/yellow, good on dark */
+    text-decoration: underline; /* keeps the underline */
+    }
+
+    .button.is-transparent {
+      background-color: rgba(255, 255, 255, 0.2); /* white with 20% opacity */
+      border: 2px solid rgba(255, 255, 255, 0.5); /* semi-transparent white border */
+      box-shadow: none;
+      color: white;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .button.is-transparent:hover {
+      background-color: rgba(255, 255, 255, 0.8); /* almost solid on hover */
+      color: black;
+      border-color: rgba(255, 255, 255, 0.8);
+    }
+    .split-container {
+      display: flex;
+      align-items: center;        /* vertically center content */
+      justify-content: space-between;
+      gap: 0rem;                  /* spacing between text and image */
+    }
+
+    .left-content {
+      flex: 0.6;                    /* take up half the space */
+      text-align: center; 
+    }
+
+    .right-image {
+      flex: 1;
+      text-align: center;          /* align image to the right */
+    }
+
+    .right-image img {
+      max-width: 100%;            /* responsive image */
+      height: auto;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="video-cover">
+    <video autoplay muted loop playsinline>
+      <source src="static/videos/SEED Metal Swirl with Logo.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+
+    <div class="content-on-top">
+        <!-- LOGO IMAGE -->
+          <img src="static/images/seed-adaptive-logo-hero-md-seed-xl-7x2-lg-5x2-md-2x1-sm-xs-16x9.png.adapt.crop7x2.1920w-.png" 
+          style="margin-top: 0px; width: 500px; height: auto;" alt="Logo" class="logo" />
+        <h1 style="margin-top: 50px;color: white; max-width: 1200px; width: 1200px; " class="title is-1 publication-title">TINY IS NOT SMALL ENOUGH:</h1>
+
+          <h1 style="color: white; max-width: 1200px; width: 1200px" class="title is-1 publication-title has-text-centered">
+          High quality, low-resource facial animation<br> models through hybrid knowledge distillation
+          </h1>
+      <div style="margin-bottom: 0px; margin-top: 50px" class="is-size-4 publication-authors">
+        <!-- Paper authors -->
+        <span class="author-block">
+        <a href="" target="_blank">Zhen Han</a>,</span>
+        <span class="author-block">
+            <a href="" target="_blank">Mattias Teye</a>,</span>
+            <span class="author-block">
+            <a href="" target="_blank">Derek Yadgaroff</a>,</span>
+            <span class="author-block">
+                <a href="https://scholar.google.se/citations?user=k-JEdm0AAAAJ&hl=sv" target="_blank">Judith Bütepage</a>
+            </span>
+      </div>
+      <div style="margin-bottom: 0px;margin-top: 50px" class="is-size-4 publication-authors">
+        <span class="author-block">SEED,  Electronic Arts,  Stockholm,  Sweden<br>ACM Transactions on Graphics 2025</span>
+      </div>
+      
+      
+
+    </div>
+  </div>
+
+
+  <div class="column has-text-centered">
+            <div class="publication-links">
+                    <!-- Arxiv PDF link -->
+                <span class="link-block">
+                <a href="static/pdfs/paper.pdf" target="_blank"
+                class="external-link button is-normal is-rounded is-dark">
+                <span class="icon">
+                    <i class="fas fa-file-pdf"></i>
+                </span>
+                <span>Paper</span>
+                </a>
+            </span>
+
+            <!-- Supplementary PDF link -->
+            <span class="link-block">
+                <a href="https://doi.org/10.1145/3730929" target="_blank"
+                class="external-link button is-normal is-rounded is-dark">
+                <span class="icon">
+                <i class="fas fa-file-video"></i>
+                </span>
+                <span>Supplementary material</span>
+            </a>
+            </span>
+
+                  <!-- Github link --
+                  <span class="link-block">
+                    <a href="https://github.com/YOUR REPO HERE" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+
+                <!-- ArXiv abstract Link -->
+                <span class="link-block">
+                  <a href="https://arxiv.org/abs/2507.18352" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              
+            </div>
+          </div>
+          
+
+
+<!-- 
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">Tiny is not small enough: High quality, low-resource facial animation models through hybrid knowledge distillation</h1>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a href="" target="_blank">Zhen Han</a>,</span>
+                <span class="author-block">
+                  <a href="" target="_blank">Mattias Teye</a>,</span>
+                  <span class="author-block">
+                    <a href="" target="_blank">Derek Yadgaroff</a>,</span>
+                    <span class="author-block">
+                      <a href="https://scholar.google.se/citations?user=k-JEdm0AAAAJ&hl=sv" target="_blank">Judith Bütepage</a>
+                    </span>
+                    </div>
+
+                    <div class="is-size-5 publication-authors">
+                      <span class="author-block">SEED,  Electronic Arts,  Stockholm,  Sweden<br>ACM Transactions on Graphics 2025</span>
+                    </div>
+
+                  <div class="column has-text-centered">
+                    <div class="publication-links">
+                      <span class="link-block">
+                        <a href="https://arxiv.org/pdf/<ARXIV PAPER ID>.pdf" target="_blank"
+                        class="external-link button is-normal is-rounded is-dark">
+                        <span class="icon">
+                          <i class="fas fa-file-pdf"></i>
+                        </span>
+                        <span>Paper</span>
+                      </a>
+                    </span>
+
+                    <span class="link-block">
+                      <a href="static/pdfs/supplementary_material.pdf" target="_blank"
+                      class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="fas fa-file-video"></i>
+                      </span>
+                      <span>Supplementary</span>
+                    </a>
+                  </span>
+
+                  <span class="link-block">
+                    <a href="https://github.com/YOUR REPO HERE" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+
+                <span class="link-block">
+                  <a href="https://arxiv.org/abs/<ARXIV PAPER ID>" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-->
+
+<!-- Teaser video-->
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+        <h2 style="margin-top: 50px" class="title is-3 has-text-centered">
+        Real-time demo 
+      </h2>
+      <video poster="" id="tree"  controls muted loop height="100%">
+        <!-- Your video here -->
+        <source src="static/videos/Derek_demo_25.mp4"
+        type="video/mp4">
+      </video>
+      
+    </div>
+  </div>
+</section>
+<!-- End teaser video -->
+
+<!-- Paper abstract -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            The training of high-quality, robust machine learning models for speech-driven 3D facial animation requires a large, diverse dataset of high-quality audio-animation pairs. To overcome the lack of such a dataset, recent work has introduced large pre-trained speech encoders that are robust to variations in the input audio and, therefore, enable the facial animation model to generalize across speakers, audio quality, and languages. However, the resulting facial animation models are prohibitively large and lend themselves only to offline inference on a dedicated machine. In this work, we explore on-device, real-time facial animation models in the context of game development. We overcome the lack of large datasets by using hybrid knowledge distillation with pseudo-labeling. Given a large audio dataset, we employ a high-performing teacher model to train very small student models. In contrast to the pre-trained speech encoders, our student models only consist of convolutional and fully-connected layers, removing the need for attention context or recurrent updates. In our experiments, we demonstrate that we can reduce the memory footprint to up to 3.4 MB and required future audio context to up to 81 ms while maintaining high-quality animations. This paves the way for on-device inference, an important step towards realistic, model-driven digital characters.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End paper abstract -->
+
+
+
+<!-- Youtube video -->
+<section class="hero is-small is-light">
+  <div class="hero-body">
+    <div class="container">
+      <!-- Paper video. -->
+      <h2 class="title is-3 has-text-centered">Video Presentation</h2>
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          
+          <div class="publication-video">
+            Will be published after SIGGRAPH 2025.
+            <!-- Youtube embed code here -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End youtube video -->
+
+
+
+<!-- Pipeline -->
+<section class="hero is-small is-light">
+
+<div class="columns is-centered ">
+<div class="container is-max-desktop">
+<h2 class="title is-3 has-text-centered" style="margin-top: 80px;">Pipeline</h2>
+
+<h2 class="title is-4">Overview</h2>
+<div class="column is-eight-ninths">
+<div class="split-container">
+  <div class="left-content">
+     <div class="content has-text-justified">
+    <p>
+    Our knowledge distillation framework operates in two stages: <b>heterogeneous</b> distillation and <b>hybrid</b> distillation.
+    In the heterogeneous stage, we distill a large transformer-based facial animation model into a compact model composed solely of convolutional and fully connected layers. 
+    In the hybrid stage, the previously trained compact model is frozen and used as a second teacher. A tiny model and a low-latency model, both sharing a convolutional architecture similar to the compact model, are supervised by these two teachers.
+    </p>
+</div>
+  </div>
+  <div class="right-image">
+    <img src="static/images/overview.png" style="width: 350px; height: auto;" alt="Descriptive alt text">
+  </div>
+</div>
+</div>
+
+
+<h2 style="margin-top: 40px;" class="title is-4">Stage 1: Heterogeneous distillation - small student</h2>
+
+    <div class="content has-text-justified is-max-desktop">
+    <p>
+    We use the Voice2Face model as the teacher example. It consists of three components: a HuBERT encoder, a mesh generator, and a Mesh2Rig model. 
+    It processes the entire input sentence (usually > 5s) to produce rig parameters for each frame. 
+    In contrast, the small student model takes raw audio waveforms directly as input and generates rig parameters frame by frame. 
+    The input corresponding to each frame is a 512 ms window, spanning 256 ms into the past and the future.
+    </p>
+     <div class="right-image">
+    <img src="static/images/stage-1.png" style="width: 1000px; height: auto;" alt="Descriptive alt text">
+  </div>
+  <p><b>Dataset: LibriSpeech 960 hours</b></p>
+  <p>The significant difference between the teacher and the small student makes intermediate feature loss impractical. Hence, we only apply the loss on the labels — the predicted rig parameters and <b>pseudo labels</b> generated by the teacher.    
+</p>
+</div>
+
+
+<h2 class="title is-4">Stage 2: Hybrid distillation - on-device & real-time student</h2>
+     <div class="content has-text-justified">
+    <p>
+    We design two variants based on the small student model. To enable on-device deployment with low memory usage, we reduce the number of channels by 75%. For a real-time version, we reduce the future context in the input window while keeping the total window length unchanged.
+    </p>
+</div>
+
+  <div class="right-image">
+    <img src="static/images/stage-2-v2.png" style="width: 1000px; height: auto;" alt="Descriptive alt text">
+  </div>
+  <p>    
+  We could train these two variants in the same way as the small student. However,  
+  since the small model and its two variants share similar architectures, a <b>homogeneous feature loss</b> is applied between them in addition to the previous label loss.
+</p>
+
+<h2 class="title is-4" style="margin-top: 40px;">Post-processing: real-time ensemble prediction</h2>
+     <div class="content has-text-justified">
+    <p>
+    We observed significant jitter for the real-time variant. To improve that, we design a ensemble prediction method tailored for real-time systems.
+    For each frame at time point \( t \), the smoothed predicted rig parameters is given by a weighted sum:
+    \[ 
+    \hat{\mathbf{r}}_t^{smooth} = \alpha_1\hat{\mathbf{r}}_{t-16.7ms}+\alpha_2\hat{\mathbf{r}}_{t}+\alpha_3\hat{\mathbf{r}}_{t+16.7ms}, 
+    \]
+    We choose \(\alpha_1=\alpha_2=\alpha_3=\frac{1}{3}\). This results in an average of rig predictions from three consecutive frames generated at 60 FPS, while the animation can still be rendered at 30 FPS.
+    Notably, this smoothed prediction results in a 16.7 ms increase in
+    latency. Memory consumption increases by an approximate factor
+    of two as inference is run twice as often. Peak memory consumption
+    stays constant.
+    </p>
+</div>
+
+</div>
+</div>
+
+</section>
+<!-- End pipeline -->
+
+
+
+
+<!-- Video carousel -->
+<section class="hero is-small is-light">
+      <h2 style="margin-top: 80px;" class="title is-3 has-text-centered">Full videos</h2>
+      <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+      <div class="content has-text-justified">
+      <p>The LibriSpeech test audio used here is a mixture of samples from <i>test-clean</i> and <i>test-other</i>.</p>
+      
+      <h2 style="margin-top: 20px;margin-bottom: 5px;" class="title is-4">Voice2Face - Teacher</h2>
+
+        <div class="item item-video1 is-max-desktop">
+          <video poster="" id="video1"  controls muted loop height="100%">
+            <!-- Your video file here -->
+            <source src="static/videos/T_blender_25.mp4"
+            type="video/mp4">
+          </video>
+      </div>
+
+      <h2 style="margin-top: 20px;margin-bottom: 5px;" class="title is-4">Voice2Face - Small student</h2>
+
+        <div class="item item-video1 is-max-desktop">
+          <video poster="" id="video1"  controls muted loop height="100%">
+            <!-- Your video file here -->
+            <source src="static/videos/S0_blender_25.mp4"
+            type="video/mp4">
+          </video>
+      </div>
+
+      <h2 style="margin-top: 20px;margin-bottom: 5px;" class="title is-4">Voice2Face - On-device student</h2>
+
+        <div class="item item-video1 is-max-desktop">
+          <video poster="" id="video1"  controls muted loop height="100%">
+            <!-- Your video file here -->
+            <source src="static/videos/S2+_blender_25.mp4"
+            type="video/mp4">
+          </video>
+      </div>
+
+      <h2 style="margin-top: 20px;margin-bottom: 5px;" class="title is-4">Voice2Face - Real-time student</h2>
+
+        <div class="item item-video1 is-max-desktop">
+          <video poster="" id="video1"  controls muted loop height="100%">
+            <!-- Your video file here -->
+            <source src="static/videos/S4+_blender_25.mp4"
+            type="video/mp4">
+          </video>
+      </div>
+
+      <h2 style="margin-top: 20px;margin-bottom: 5px;" class="title is-4">Voice2Face - Real-time student (smoothed)</h2>
+
+        <div class="item item-video1 is-max-desktop">
+          <video poster="" id="video1"  controls muted loop height="100%">
+            <!-- Your video file here -->
+            <source src="static/videos/S4+smooth_blender_25.mp4"
+            type="video/mp4">
+          </video>
+      </div>
+
+      <h2 style="margin-top: 0px;margin-bottom: 5px;" class="title is-4">CodeTalker - Teacher (left) & Small student (right)</h2>
+
+        <div class="item item-video1">
+          <video poster="" id="video1"  controls muted loop height="100%">
+            <!-- Your video file here -->
+            <source src="static/videos/codetalker.mp4"
+            type="video/mp4">
+          </video>
+          </div>
+          </div>
+        </div>
+  </div>
+</section>
+<!-- End video carousel -->
+
+
+<!-- Related -->
+<section class="hero is-small is-light">
+    <div class="container is-max-desktop content">
+      <h2 style="margin-top: 20px;" class="title is-3 has-text-centered ">Related links</h2>
+      <div class="columns is-centered has-text-centered">
+      <div class="column ">
+      <div class="content has-text-justified is-max-desktop">
+      
+      <h2 class="title is-4"><a href="https://www.ea.com/seed/news/sca22-voice2face-audio-driven-facial-animation" style="color: blue; text-decoration: underline;">Voice2Face</a> (<a href="https://www.ea.com/seed" style="color: blue; text-decoration: underline;">SEED</a>, Electronic Arts)</h2>
+      <p style="margin-top: -10px"> The current Voice2Face teacher model is slightly different from the orginal version. MFCCs and SSCs feature are replaced with HuBERT, while the model architecture and training framework remain the same. See full details in our paper.
+
+      <h2 class="title is-4"><a href="https://doubiiu.github.io/projects/codetalker/" style="color: blue; text-decoration: underline;">CodeTalker</a> (CVPR 2023)</h2>
+      <p style="margin-top: -10px;margin-bottom: 20px;"> CodeTalker predicts mesh data. We use PCA to reduce the mesh dimension to 50 (99.9% variance retained), then the last layer of our student model is adapted to it accordingly. 
+      See full details in our paper.
+
+      </div>
+          </div>
+        </div>
+  </div>
+</section>
+<!-- End related -->
+
+
+
+
+<!--BibTex citation -->
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code>
+        @article{Tiny_sig25,
+        author = {Han, Zhen and Teye, Mattias and Yadgaroff, Derek and Bütepage, Judith},
+        title = {Tiny is not small enough: High quality, low-resource facial animation through hybrid knowledge distillation },
+        year = {2025},
+        publisher = {Association for Computing Machinery},
+        volume = {44},
+        number = {4},
+        url = {https://doi.org/10.1145/3730929},
+        doi = {10.1145/3730929},
+        journal = {ACM Trans. Graph.},
+        month = {Aug},
+        articleno = {104}
+        }
+</code></pre>
+    </div>
+</section>
+<!--End BibTex citation -->
+
+
+  <footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+
+          <p>
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+            We thank the authors for open-sourcing it.
+            This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>. 
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Statcounter tracking code -->
+  
+<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+    <!-- End of Statcounter Code -->
+
+  </body>
+  </html>
