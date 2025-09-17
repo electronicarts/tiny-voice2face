@@ -3,6 +3,8 @@ This is an academic paper project page for **the SIGGRAPH 2025 paper** from **SE
 
 **"Tiny is not small enough: High-quality, low-resource facial animation models through hybrid knowledge distillation".**
 
+https://electronicarts.github.io/tiny-voice2face/
+
 ## Acknowledgments
 Parts of this project page were adopted from the [Nerfies](https://nerfies.github.io/) page.
 
